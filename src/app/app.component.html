@@ -1,0 +1,92 @@
+<!--Kendo Grid With Kendo Dialog (Button on toolbar)-->
+
+<p>
+  <kendo-dialog title="Awesome title" *ngIf="dialogOpen" (close)="toggle()">
+      I am a super simple Kendo UI Dialog!
+  </kendo-dialog>
+
+  <kendo-grid [data]="gridData"
+        [filterable]="true" [filter]="state.filter" (filterChange)="filterChange($event)"
+        [pageable]="true" [pageSize]="state.take" [skip]="state.skip" (pageChange)="pageChange($event)">
+
+    <ng-template kendoGridToolbarTemplate [position]="position">
+      <button (click)="toggle()" class="k-button" kendoButton [primary]="true">Normal Kendo Dialog</button>
+    </ng-template>
+
+    <kendo-grid-column field="ProductID" title="Product ID" width="120" [locked]="true"
+      [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}"
+      [filterable]="false">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="ProductName" title="Product Name" width="480px"
+      [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}">
+      <ng-template kendoGridFilterCellTemplate let-filter="filter" let-column="column">
+         <kendo-grid-string-filter-cell [column]="column" [filter]="filter" [showOperators]="false">
+           
+         </kendo-grid-string-filter-cell>
+       </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column field="FirstOrderedOn" title="Order Date" width="380px"
+      [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}"
+      filter="date" format="{0:d}" 
+      [filterable]="false">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="UnitPrice" title="Unit Price" width="380px" format="{0:c}"
+      [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}"
+      filter="numeric" [filterable]="false">
+    </kendo-grid-column>
+
+    <kendo-grid-column field="Discontinued" title="Discontinued" width="380px" 
+      [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}"
+       filter="boolean" [filterable]="false">
+
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <input type="checkbox" [checked]="dataItem.Discontinued"/>
+      </ng-template>
+
+    </kendo-grid-column>
+  </kendo-grid>  
+</p>
+
+<!--End-->
+
+
+
+
+
+<!--Kendo Grid Within Kendo Dialog-->
+<!--
+<p>
+  <button (click)="toggleKendoDialog()" class="k-button" kendoButton [primary]="true">Kendo Dialog With Kendo Grid</button>
+  <kendo-dialog title="Awesome title" *ngIf="kendoDialogOpen" (close)="toggleKendoDialog()">
+
+    <kendo-grid [data]="gridData" [height]="500" style="width:500px;"
+      [pageable]="true" (pageChange)="pageChange($event)" [pageSize]="pageSize" [skip]="skip">
+
+      <kendo-grid-column field="ProductID" title="Product ID" width="120" [locked]="true"
+        [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}">
+      </kendo-grid-column>
+
+      <kendo-grid-column field="ProductName" title="Product Name" width="120"
+        [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}">  
+      </kendo-grid-column>
+
+      <kendo-grid-column field="UnitPrice" title="Unit Price" width="120" 
+        [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}">  
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Discontinued" title="Discontinued" width="120" 
+        [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}">
+        <ng-template kendoGridCellTemplate let-dataItem>
+                <input type="checkbox" [checked]="dataItem.Discontinued"/>
+            </ng-template>  
+      </kendo-grid-column>
+    </kendo-grid>
+
+  </kendo-dialog>
+</p>
+-->
+
+<!--End-->
