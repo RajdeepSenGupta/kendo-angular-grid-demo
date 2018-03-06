@@ -11,6 +11,7 @@
 
     <ng-template kendoGridToolbarTemplate [position]="position">
       <button (click)="toggle()" class="k-button" kendoButton [primary]="true">Normal Kendo Dialog</button>
+      <!--<button (click)="downloadPdf()" class="k-button" kendoButton [primary]="true">Download PDF</button>-->
     </ng-template>
 
     <kendo-grid-column field="ProductID" title="Product ID" width="120" [locked]="true"
@@ -18,12 +19,13 @@
       [filterable]="false">
     </kendo-grid-column>
 
-    <kendo-grid-column field="ProductName" title="Product Name" width="480px"
+    <!--<kendo-grid-column field="ProductName" title="Product Name" width="480px"
       [headerStyle]="{'background-color': '#666','color': '#fff','line-height': '1em'}">
       <ng-template kendoGridFilterCellTemplate let-filter="filter" let-column="column">
-         <kendo-grid-string-filter-cell [column]="column" [filter]="filter" [showOperators]="false">
-           
-         </kendo-grid-string-filter-cell>
+         <kendo-autocomplete [data]="autoCompleteData" [filterable]="true" 
+         (filterChange)="autoCompleteChange($event)"
+         (valueChange)="filterData($event)">
+         </kendo-autocomplete>
        </ng-template>
     </kendo-grid-column>
 
@@ -46,7 +48,20 @@
         <input type="checkbox" [checked]="dataItem.Discontinued"/>
       </ng-template>
 
-    </kendo-grid-column>
+    </kendo-grid-column>-->
+
+    <kendo-grid-column title="Action" width="200" [filterable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button title="Download" (click)="pdf.saveAs('pdc.pdf')"><i class="material-icons">file_download</i></button>
+
+        <div>
+          <kendo-pdf-export #pdf paperSize="A4" margin="1cm" landscape="true">
+            <!--<img src="https://c2.staticflickr.com/2/1574/25734996011_637430f5d8_c.jpg" />-->
+            <img src="http://www.fzc11oktomvri.com.mk/en/wp-content/uploads/2011/01/table-2-construction-pipes.jpg" />
+          </kendo-pdf-export>
+        </div>  
+      </ng-template>
+    </kendo-grid-column> 
   </kendo-grid>  
 </p>
 

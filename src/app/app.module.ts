@@ -9,7 +9,9 @@ import { AppComponent } from './app.component';
 // Kendo
 import { ButtonModule } from '@progress/kendo-angular-buttons';
 import { DialogModule } from '@progress/kendo-angular-dialog';
-import { GridModule } from '@progress/kendo-angular-grid';
+import { GridModule, PDFModule } from '@progress/kendo-angular-grid';
+import { DropDownListModule, AutoCompleteModule } from '@progress/kendo-angular-dropdowns';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,11 @@ import { GridModule } from '@progress/kendo-angular-grid';
     // Kendo
     ButtonModule,
     DialogModule,
-    GridModule
+    GridModule,
+    PDFModule,
+    DropDownListModule,
+    AutoCompleteModule,
+    PDFExportModule
   ],
   providers: [],
   bootstrap: [AppComponent]
