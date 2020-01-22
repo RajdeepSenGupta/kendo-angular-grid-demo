@@ -16,7 +16,7 @@ import { Products } from './product.data';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-
+  
   private dialogOpen: boolean = false;
   private kendoDialogOpen: boolean = false;
   private filter: CompositeFilterDescriptor;
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
         this.autoCompleteData = this.autoCompleteDataList.filter((s) => s.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
     }
 
-    public filterData(ev: any){
+  public filterData(ev: any){
       this.gridData = Products.filter(x => x.ProductName.toLowerCase() === ev.toLowerCase());
       if(ev === null || ev === undefined || ev === ""){
         this.gridData = Products;
